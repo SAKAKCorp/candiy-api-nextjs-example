@@ -1,14 +1,27 @@
 import { NextRequest, NextResponse } from  "next/server";
 
 export async function POST(req: NextRequest) {
+
+    function getDateYearsAgo(yearsAgo = 5) {
+        const date = new Date();
+        date.setFullYear(date.getFullYear() - yearsAgo);
+        date.setDate(date.getDate() +1);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    }
     try {
         const body = await req.json();
         const modifiedBody = {
             ...body,
-            birthdate: `19${body.birthdate}`
+            identity: `${body.identity1}${body.identity2}`,
+            startDate: getDateYearsAgo(5)
         };
 
-        const candiyResponse = await fetch("https://api.candiy.io/v1/hira/medication_overall", {
+        const candiyResponse = await fetch("https://1api.candiy.io/v1/hira/medication_overall", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

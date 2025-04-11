@@ -1,11 +1,14 @@
 export interface FormDataType {
     id: string;
-    loginTypeLevel: string;
+    loginType: string;
+    loginTypeLevel?: string;
     legalName: string;
-    birthdate: string;
+    identity1: string;
+    identity2: string;
     phoneNo: string;
     telecom: string;
-    identity: string;
+    identity?: string;
+    smsAuthNo?: "",
 }
 
 export interface MultiFactorInfo {

@@ -38,9 +38,9 @@ export default function NhisPage() {
             const responseObject = await response.json();
             if (response.status === 500) throw new Error(`Server error occurred, please try again later. \nstatus: ${response.status}, message: ${responseObject?.message || "Unknown error"}`);
             if (responseObject.status !== 'success') throw new Error(`Client errror occurred, message: ${responseObject?.message || "Unknown error"}`);
-            
+
             const data = responseObject.data;
-            
+
             setMultiFactorInfo({
                 transactionId: data.transactionId,
                 jobIndex: data.jobIndex,
@@ -76,7 +76,7 @@ export default function NhisPage() {
             const responseObject = await response.json();
             if (response.status === 500) throw new Error(`Server error occurred, please try again later. \nstatus: ${response.status}, message: ${responseObject?.message || "Unknown error"}`);
             if (responseObject.status !== 'success') throw new Error(`Client errror occurred, message: ${responseObject?.message || "Unknown error"}`);
-            
+
             setResponseData(responseObject);
         } catch (err) {
             setError({ id: err instanceof Error ? err.message : "알 수 없는 오류 발생" });
@@ -110,7 +110,7 @@ export default function NhisPage() {
                             className="w-full p-2 border rounded"
                         />
                     )}
-                    renderSelectField={(name, value, options) => (
+                    renderLoginTypeLevelField={(name, value, options) => (
                         <select
                             name={name}
                             value={value}
@@ -124,6 +124,22 @@ export default function NhisPage() {
                             ))}
                         </select>
                     )}
+                    renderTelecomSelectField={
+                        (name, value, options) => (
+                            <select
+                                name={name}
+                                value={value}
+                                onChange={handleChange}
+                                className="w-full h-10 border rounded"
+                            >
+                                {options.map((option, index) => (
+                                    <option key={index} value={option.value}>
+                                        {option.key}
+                                    </option>
+                                ))}
+                            </select>
+                        )
+                    }
                 />
 
                 {!multiFactorInfo && (

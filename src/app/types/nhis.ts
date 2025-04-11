@@ -1,5 +1,6 @@
 export interface FormDataType {
     id: string;
+    loginType?: string;
     loginTypeLevel: string;
     legalName: string;
     birthdate: string;

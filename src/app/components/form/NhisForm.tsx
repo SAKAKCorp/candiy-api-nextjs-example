@@ -11,9 +11,14 @@ interface FormProps {
         placeholder: string,
         value: string
     ) => JSX.Element;
-    renderSelectField: (
-        name: keyof FormDataType, 
-        value: string, 
+    renderLoginTypeLevelField: (
+        name: keyof FormDataType,
+        value: string,
+        options: { key: string; value: string }[]
+    ) => JSX.Element;
+    renderTelecomSelectField: (
+        name: keyof FormDataType,
+        value: string,
         options: { key: string; value: string }[]
     ) => JSX.Element;
 }
@@ -21,7 +26,8 @@ interface FormProps {
 const NhisForm: React.FC<FormProps> = ({
     formData,
     renderInputField,
-    renderSelectField,
+    renderLoginTypeLevelField,
+    renderTelecomSelectField
 }) => {
 const additionalFields = (
         <>
@@ -33,7 +39,8 @@ const additionalFields = (
         <BaseForm<FormDataType>
             formData={formData}
             renderInputField={renderInputField}
-            renderSelectField={renderSelectField}
+            renderLoginTypeLevelField={renderLoginTypeLevelField}
+            renderTelecomSelectField={renderTelecomSelectField}
             additionalFields={additionalFields}
         />
     );
