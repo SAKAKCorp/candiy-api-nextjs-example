@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from  "next/server";
 export async function POST(req: NextRequest) {
 
     // get env variable from env.local
-    const CANDIY_API_URL = process.env.CANDIY_API_URL || "https://api.candiy.io/v1"
+    const CANDIY_API_URL = process.env.NEXT_PUBLIC_CANDIY_API_URL || "https://api.candiy.io/v1"
 
     function getDateYearsAgo(yearsAgo = 5) {
         const date = new Date();
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.CANDIY_API_KEY || "", // 환경 변수로 관리
+                "x-api-key": process.env.NEXT_PUBLIC_CANDIY_API_KEY || "", // 환경 변수로 관리
             },
             body: JSON.stringify(modifiedBody),
         });
