@@ -6,6 +6,8 @@ export interface FormDataType {
     birthdate: string;
     phoneNo: string;
     telecom: string;
+    startDate: string;
+    endDate: string;
 }
 
 export interface MultiFactorInfo {
