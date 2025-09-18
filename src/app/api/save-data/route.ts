@@ -2,15 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION || "ap-northeast-2",
+    region: process.env.S3_REGION || "ap-northeast-2",
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+        accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
     },
 });
 
+
 export async function POST(req: NextRequest) {
     try {
+        console.log('=== S3 Save Debug Info ===');
+        console.log('Environment variables:', {
+            region: process.env.S3_REGION,
+            bucket: process.env.S3_BUCKET_NAME,
+            hasAccessKey: !!process.env.S3_ACCESS_KEY_ID,
+            hasSecretKey: !!process.env.S3_SECRET_ACCESS_KEY
+        });
+
         const { requestData, responseData, email } = await req.json();
 
         // Request 파일 저장
@@ -41,10 +50,14 @@ export async function POST(req: NextRequest) {
         });
 
     } catch (error) {
-        console.error("Error saving data to S3:", error);
+        console.error("=== S3 Save Error ===");
+        console.error("Error details:", error);
+        console.error("Error name:", error instanceof Error ? error.name : 'Unknown');
+        console.error("Error message:", error instanceof Error ? error.message : 'Unknown');
+
         return NextResponse.json({
             success: false,
-            error: "S3 파일 저장 중 오류가 발생했습니다."
+            error: `S3 파일 저장 중 오류가 발생했습니다: ${error instanceof Error ? error.message : 'Unknown error'}`
         }, { status: 500 });
     }
 }

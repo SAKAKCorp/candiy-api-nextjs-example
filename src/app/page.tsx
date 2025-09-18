@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FormDataType, MultiFactorInfo, FormError } from "@/app/types/nhis";
+import { FormDataType, MultiFactorInfo } from "@/app/types/nhis";
 
 export default function NhisPage() {
     const [formData, setFormData] = useState<FormDataType>({
