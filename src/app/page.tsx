@@ -245,8 +245,8 @@ export default function NhisPage() {
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                     {/* 헤더 */}
                     <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
-                        <h1 className="text-2xl font-bold text-white text-center">DB생명 참여</h1>
-                        <p className="text-blue-100 text-center mt-2 text-sm">건강검진 정보 수집</p>
+                        <h1 className="text-2xl font-bold text-white text-center">건강검진 데이터 수집 도구</h1>
+                        <p className="text-blue-100 text-center mt-2 text-sm">DB생명 디지털 헬스케어 AI 에이전트 테스트</p>
                     </div>
 
                     {/* 폼 영역 */}
@@ -328,14 +328,6 @@ export default function NhisPage() {
                                 )}
                             </div>
 
-                            {/* 인증 방법 표시 */}
-                            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                                <div className="flex items-center space-x-2">
-                                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                                    <span className="text-sm font-medium text-blue-700">카카오톡 간편인증</span>
-                                </div>
-                            </div>
-
                             {/* 동의 체크박스 */}
                             <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                                 <div className="flex items-start space-x-3">
@@ -348,7 +340,7 @@ export default function NhisPage() {
                                     />
                                     <div className="flex-1">
                                         <label htmlFor="consent" className="text-sm text-gray-700">
-                                            <span className="font-medium">개인정보 수집·이용</span>에 동의합니다.
+                                            <span className="font-medium">[필수] 개인정보 수집·이용 동의</span>
                                         </label>
                                         <button
                                             type="button"
@@ -374,7 +366,7 @@ export default function NhisPage() {
                                             <span>처리중...</span>
                                         </div>
                                     ) : (
-                                        '인증 요청'
+                                        '카카오톡 간편 인증 요청'
                                     )}
                                 </button>
                             )}
@@ -482,33 +474,48 @@ export default function NhisPage() {
                             <div className="space-y-4 text-sm text-gray-700 leading-relaxed">
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-2">1. 개인정보의 수집 및 이용 목적</h3>
-                                    <p>DB생명 헬스코디네이터 데모서비스 제공을 위해 개인정보를 수집·이용합니다.</p>
+                                    <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>DB생명의 디지털 헬스케어 AI 에이전트 서비스 참여자 식별, 건강검진 정보 연동, 서비스 기능 테스트 및 개선을 위하여 개인정보를 수집·이용합니다.</li>
+                                    </ul>
                                 </div>
 
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-2">2. 수집하는 개인정보의 항목</h3>
                                     <ul className="list-disc list-inside space-y-1 ml-4">
-                                        <li>이메일 주소</li>
-                                        <li>성명</li>
-                                        <li>생년월일</li>
-                                        <li>휴대전화번호</li>
-                                        <li>건강검진 관련 정보</li>
+                                        <li>일반 개인정보: 이메일, 이름, 휴대전화번호, 생년월일</li>
+                                        <li>민감정보(건강 관련 정보): 건강검진 결과 항목(예: 혈압, 혈당, 콜레스테롤, BMI 등)</li>
                                     </ul>
                                 </div>
 
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-2">3. 개인정보의 보유 및 이용기간</h3>
-                                    <p>수집된 개인정보는 DB생명 헬스코디네이터 데모서비스를 위해서만 사용되며, 서비스 종료 후 안전하게 폐기됩니다.</p>
+                                    <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>수집된 개인정보는 서비스 운영 및 분석을 위해 활용하며, 서비스 종료일로부터 3개월 이내에 지체 없이 복구 불가능한 방법으로 안전하게 파기합니다.</li>
+                                    <li>법령에 따라 보관이 필요한 경우에는 해당 기간 동안 별도로 안전하게 보관합니다.</li>
+                                    </ul>
                                 </div>
 
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-2">4. 개인정보 제3자 제공</h3>
-                                    <p>수집된 개인정보는 제3자에게 제공되지 않습니다.</p>
+                                    <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>수집된 개인정보는 법령에 근거하거나 본인의 별도 동의가 있는 경우를 제외하고 제3자에게 제공되지 않습니다.</li>
+                                    </ul>
                                 </div>
 
                                 <div>
-                                    <h3 className="font-semibold text-gray-900 mb-2">5. 동의를 거부할 권리</h3>
-                                    <p>개인정보 수집·이용에 대한 동의를 거부할 수 있으나, 동의를 거부하시는 경우 해당 서비스를 이용할 수 없습니다.</p>
+                                    <h3 className="font-semibold text-gray-900 mb-2">5. 정보주체의 권리</h3>
+                                    <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>귀하는 언제든지 본인의 개인정보에 대해 열람·정정·삭제·처리정지 요구를 할 수 있으며, 개인정보보호 담당부서(이메일: sunrise@sakak.co.kr
+                                        
+)를 통해 권리를 행사할 수 있습니다.</li>
+</ul>
+                                </div>
+
+                                <div>
+                                    <h3 className="font-semibold text-gray-900 mb-2">6. 동의 거부권 및 불이익 안내</h3>
+                                    <ul className="list-disc list-inside space-y-1 ml-4">
+                                    <li>귀하는 개인정보 및 민감정보 수집·이용에 대한 동의를 거부할 수 있습니다. 다만, 동의를 거부할 경우 본 서비스 이용이 제한됩니다.</li>
+                                    </ul>
                                 </div>
 
                                 <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
