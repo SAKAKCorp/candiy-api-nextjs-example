@@ -50,5 +50,3 @@ API 라우트는 `src/app/api` 디렉터리에 위치해 있습니다.
 - `/nhis/treatment-record` - 국민건강보험(NHIS) 진료 및 투약정보 조회 예제 페이지
 - `/hira/medical-record` - 건강보험심사평가원(HIRA) 내 진료정보 열람 조회 예제 페이지
 - `/hira/medication-overall` - - 건강보험심사평가원(HIRA) 내가 먹는약 한눈에 조회 예제 페이지
-
-
