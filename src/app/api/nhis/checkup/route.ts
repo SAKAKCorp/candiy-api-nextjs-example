@@ -1,10 +1,27 @@
 import { NextRequest, NextResponse } from  "next/server";
 
 export async function POST(req: NextRequest) {
-    try {
-        const CANDIY_API_URL= process.env.NEXT_PUBLIC_CANDIY_API_URL || "https://api.candiy.io/v1"
+    const CANDIY_API_URL= process.env.NEXT_PUBLIC_CANDIY_API_URL || "https://api.candiy.io/v1"
 
+    function getDateYearsAgo(yearsAgo = 10) {
+        const date = new Date();
+        date.setFullYear(date.getFullYear() - yearsAgo);
+        date.setDate(date.getDate() +1);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    }
+
+    try {
         const body = await req.json();
+
+        const modifiedBody = {
+            ...body,
+            startDate: getDateYearsAgo(10)
+        };
 
         const candiyResponse = await fetch(CANDIY_API_URL + "/nhis/checkup", {
             method: "POST",
@@ -12,7 +29,7 @@ export async function POST(req: NextRequest) {
                 "Content-Type": "application/json",
                 "x-api-key": process.env.NEXT_PUBLIC_CANDIY_API_KEY || "", // 환경 변수로 관리
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify(modifiedBody),
         });
         const data = await candiyResponse.json();
 

@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
 
     const CANDIY_API_URL = process.env.NEXT_PUBLIC_CANDIY_API_STAGING_URL || "https://api.stag.candiy.io/v1"
 
-    function getDateYearsAgo(yearsAgo = 2) {
+    function getDateYearsAgo(yearsAgo = 5) {
         const date = new Date();
         date.setFullYear(date.getFullYear() - yearsAgo);
         date.setDate(date.getDate() +1);
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
         const modifiedBody = {
             ...body,
             identity: `${body.identity1}${body.identity2}`,
-            startDate: getDateYearsAgo(5)
+            startDate: getDateYearsAgo(2)
         };
 
         const candiyResponse = await fetch( CANDIY_API_URL + "/hira/medication_overall", {
