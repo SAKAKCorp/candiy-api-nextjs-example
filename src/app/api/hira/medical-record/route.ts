@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     // get env variable from env.local
     const CANDIY_API_URL = process.env.NEXT_PUBLIC_CANDIY_API_STAGING_URL || "https://api.stag.candiy.io/v1"
 
-    function getDateYearsAgo(yearsAgo = 5) {
+    function getDateYearsAgo(yearsAgo = 2) {
         const date = new Date();
         date.setFullYear(date.getFullYear() - yearsAgo);
         date.setDate(date.getDate() +1);
